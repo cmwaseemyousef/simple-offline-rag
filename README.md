@@ -68,9 +68,12 @@ flowchart TD
 ```
 
 ## Notes
-- Offline mode doesn’t call external APIs; it summarizes and cites from retrieved chunks.
-- With an API key, answers are LLM-generated but still grounded with retrieved context.
-- Extendable: swap TF‑IDF for embeddings, add a vector DB, or wrap with a web UI.
+
+## Blog
+- Google Docs: https://docs.google.com/document/d/1QRPLkTwkNRqubP88OErtXevAf2GsvAmf/edit?usp=sharing&ouid=115196731265431684802&rtpof=true&sd=true
+- Markdown: `blog.md`
+- HTML: `blog.html`
+- DOCX: `blog.docx`
 
 ## Demo (GIF)
 If you prefer a quick video preview, record a 15–30s clip of the CLI answering a query and save it as `assets/cli_demo.gif`.
