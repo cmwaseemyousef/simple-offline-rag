@@ -17,6 +17,9 @@ This demo shows the core of Retrieval-Augmented Generation (RAG):
 
 It’s useful for learning RAG without heavy dependencies or paid APIs, and can be extended to embeddings, vector DBs, and agents.
 
+## Preview
+![CLI preview of RAG answer and sources](assets/cli_example.svg)
+
 ## Quickstart
 
 ### 1) Create and activate a Python env (optional but recommended)
