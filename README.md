@@ -1,5 +1,7 @@
 # Simple, Offline-Friendly RAG Demo (AI Engineering & Content Internship)
 
+[![CI](https://github.com/cmwaseemyousef/simple-offline-rag/actions/workflows/ci.yml/badge.svg)](https://github.com/cmwaseemyousef/simple-offline-rag/actions/workflows/ci.yml)
+
 Build-and-explain RAG demo that runs locally without API keys, yet can use an LLM if you add one. It includes:
 - TF‑IDF retrieval over local docs
 - Chunking + top‑k context selection

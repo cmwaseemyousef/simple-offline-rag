@@ -88,3 +88,6 @@ pytest -q
 
 ## License
 MIT
+
+## About the author
+Waseem Ibn Yousef CM is an AI engineer focused on practical, developer-friendly AI systems. Interests include RAG, agents, and shipping clear tutorials that help others learn fast.
