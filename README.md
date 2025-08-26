@@ -72,5 +72,12 @@ flowchart TD
 - With an API key, answers are LLM-generated but still grounded with retrieved context.
 - Extendable: swap TF‑IDF for embeddings, add a vector DB, or wrap with a web UI.
 
+## Demo (GIF)
+If you prefer a quick video preview, record a 15–30s clip of the CLI answering a query and save it as `assets/cli_demo.gif`.
+
+Once added, it will render here:
+
+![CLI demo GIF](assets/cli_demo.gif)
+
 ## License
 MIT
