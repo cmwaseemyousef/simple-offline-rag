@@ -1,0 +1,80 @@
+<h1 id="build-a-simple-offline-rag-demo-step-by-step">Build a Simple Offline RAG Demo (Step-by-Step)</h1>
+<p>This tutorial walks you through building a Retrieval-Augmented Generation (RAG) demo that runs offline using TF‑IDF. You’ll learn the core ideas and have a working CLI app you can extend with LLMs, embeddings, or a web UI.</p>
+<h2 id="why-rag">Why RAG?</h2>
+<p>RAG reduces hallucinations by grounding answers in retrieved documents. Instead of forcing the model to “know everything,” you fetch relevant passages and ask the model (or a simple heuristic) to answer using those passages.</p>
+<h2 id="what-well-build">What we’ll build</h2>
+<ul>
+<li>A local corpus of <code>.txt</code> files</li>
+<li>A chunker that splits documents</li>
+<li>A TF‑IDF vector index for retrieval</li>
+<li>Two answerers:</li>
+<li>OfflineAnswerer: extractive summary with citations</li>
+<li>OpenAIAnswerer: optional LLM answer grounded in retrieved context</li>
+<li>A CLI to query the system</li>
+</ul>
+<h2 id="prereqs">Prereqs</h2>
+<ul>
+<li>Python 3.10+</li>
+<li>Windows PowerShell or your shell of choice</li>
+</ul>
+<h2 id="setup">Setup</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">python</span> <span class="n">-m</span> <span class="n">venv</span> <span class="p">.</span><span class="n">venv</span>
+<span class="p">.</span> <span class="p">.</span><span class="n">venv</span><span class="p">/</span><span class="n">Scripts</span><span class="p">/</span><span class="n">Activate</span><span class="p">.</span><span class="n">ps1</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">-r</span> <span class="n">requirements</span><span class="p">.</span><span class="n">txt</span>
+</code></pre></div>
+
+<h2 id="project-layout">Project layout</h2>
+<div class="codehilite"><pre><span></span><code>src/
+  app/
+    rag_pipeline.py
+    cli.py
+data/
+  intro_rag.txt
+  tfidf_baseline.txt
+tests/
+  test_rag.py
+README.md
+</code></pre></div>
+
+<h2 id="core-code-explained">Core code explained</h2>
+<h3 id="loading-and-chunking">Loading and chunking</h3>
+<p>We load <code>.txt</code> files and split into overlapping chunks so retrieval can score localized passages.</p>
+<p>Key parameters:
+- <code>chunk_size</code>: characters per chunk (default 600)
+- <code>chunk_overlap</code>: overlap between chunks (default 80)</p>
+<h3 id="tfidf-retrieval">TF‑IDF retrieval</h3>
+<p>We use <code>sklearn</code> to vectorize chunks and compute cosine similarity. It’s fast, transparent, and offline.</p>
+<h3 id="answering">Answering</h3>
+<ul>
+<li>Offline: pick sentences that share terms with the query; append citations <code>[doc#chunk]</code>.</li>
+<li>OpenAI: if <code>OPENAI_API_KEY</code> is set and <code>--provider openai</code>, the system sends context + query to a chat model.</li>
+</ul>
+<h2 id="try-it">Try it</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">python</span> <span class="n">-m</span> <span class="n">src</span><span class="p">.</span><span class="n">app</span><span class="p">.</span><span class="nb">cli </span><span class="s2">&quot;What is RAG and why use it?&quot;</span>
+</code></pre></div>
+
+<p>Optional with OpenAI:</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">$env:OPENAI_API_KEY</span> <span class="p">=</span> <span class="s2">&quot;sk-...&quot;</span>
+<span class="n">python</span> <span class="n">-m</span> <span class="n">src</span><span class="p">.</span><span class="n">app</span><span class="p">.</span><span class="nb">cli </span><span class="s2">&quot;Explain TF-IDF in RAG&quot;</span> <span class="p">-</span><span class="n">-provider</span> <span class="n">openai</span> <span class="p">-</span><span class="n">-model</span> <span class="n">gpt</span><span class="p">-</span><span class="n">4o-mini</span>
+</code></pre></div>
+
+<h2 id="testing">Testing</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">pytest</span> <span class="n">-q</span>
+</code></pre></div>
+
+<h2 id="extend-it">Extend it</h2>
+<ul>
+<li>Swap TF‑IDF for sentence embeddings (e.g., <code>sentence-transformers</code>) and a vector DB (FAISS, Chroma).</li>
+<li>Add loaders for PDFs/HTML/Markdown.</li>
+<li>Build a Streamlit UI with source highlighting.</li>
+<li>Add multi-turn memory and tool use (web search, calculators) for agentic workflows.</li>
+</ul>
+<h2 id="faq">FAQ</h2>
+<ul>
+<li>No API key needed to run offline mode.</li>
+<li>Add your own <code>.txt</code> files to <code>data/</code> and ask domain-specific questions.</li>
+</ul>
+<h2 id="license">License</h2>
+<p>MIT</p>
+<h2 id="about-the-author">About the author</h2>
+<p>Waseem Ibn Yousef CM is an AI engineer focused on practical, developer-friendly AI systems. Interests include RAG, agents, and shipping clear tutorials that help others learn fast.</p>
