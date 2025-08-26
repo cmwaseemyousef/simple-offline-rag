@@ -1,0 +1,18 @@
+A Retrieval-Augmented Generation (RAG) system grounds an LLM’s answers in relevant documents.
+
+Why it matters:
+- Reduces hallucinations by anchoring outputs in retrieved facts.
+- Keeps models lightweight by moving knowledge to your data layer.
+- Lets teams update answers by changing the corpus rather than the model.
+
+Key terms:
+- Chunking: splitting documents into small passages for retrieval.
+- TF-IDF: a classic ranking approach using term frequency and inverse document frequency.
+- Embeddings: vector representations that capture semantic similarity.
+
+FAQ:
+Q: Do I need an API key?
+A: No. This demo runs offline. Optional: set OPENAI_API_KEY for LLM generation.
+
+Q: Can I add PDFs?
+A: Yes, convert to text first (this demo reads .txt). Future step: PDF loader.

@@ -1,0 +1,12 @@
+RAG is often implemented with embeddings and a vector database. However, TF-IDF remains a strong baseline:
+
+Pros of TF-IDF:
+- Simple and fast to build locally
+- No external API required
+- Transparent term-based matching
+
+Limitations:
+- Misses semantic matches that use different words
+- Requires preprocessing for performance on large corpora
+
+This demo uses TF-IDF to stay offline-first and easy to understand.

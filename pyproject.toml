@@ -1,0 +1,5 @@
+[project]
+name = "simple-offline-rag"
+version = "0.1.0"
+description = "A minimal offline-first RAG demo with optional OpenAI generation"
+requires-python = ">=3.10"
